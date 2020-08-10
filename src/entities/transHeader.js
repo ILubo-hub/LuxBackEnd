@@ -8,6 +8,14 @@ module.exports = {
         },
         date: {
             type: "date"
+        },
+    },
+    relations: {
+        datails: {
+            target: "Trans_Detail",
+            type: "one-to-many",
+            joinTable: true,
+            cascade: true,
         }
     }
 }

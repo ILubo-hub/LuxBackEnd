@@ -20,6 +20,14 @@ module.exports = {
         },
         sellerName: {
             type: "string",
+        },
+    },
+    relations: {
+        category: {
+            target: "ProductCategory",
+            type: "many-to-many",
+            joinTable: true,
+            cascade: true,
         }
     }
 }

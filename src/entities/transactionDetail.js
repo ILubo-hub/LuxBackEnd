@@ -15,5 +15,13 @@ module.exports = {
         total: {
             type: "float",
         },
+    },
+    relations: {
+        products: {
+            target: "Product",
+            type: "many-to-many",
+            joinTable: true,
+            cascade: true,
+        }
     }
 };

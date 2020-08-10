@@ -1,3 +1,5 @@
+const role = require("./role");
+
 module.exports = {
     name:"user",
     columns: {
@@ -14,7 +16,15 @@ module.exports = {
         },
         email: {
             type: "string",
-            
         },
+    },
+
+    relations : {
+        role: {
+            target: "role",
+            type: "many-to-one",
+            joinTable: true,
+            cascade: true,
+        }
     }
 };
