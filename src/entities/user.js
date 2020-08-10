@@ -1,6 +1,5 @@
-const role = require("./role");
 
-module.exports = {
+export const User = {
     name:"user",
     columns: {
         id: {
@@ -9,13 +8,13 @@ module.exports = {
             generated: true,
         },
         name: {
-            type: "string",
+            type: "varchar",
         },
         lastname: {
-            type: "string",
+            type: "varchar",
         },
         email: {
-            type: "string",
+            type: "varchar",
         },
     },
 

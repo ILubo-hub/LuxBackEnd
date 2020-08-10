@@ -1,22 +1,30 @@
-const Express = require('express');
-const typeorm = require('typeorm');
+import Express from 'express';
+import pkg from 'typeorm';
+import {Role} from './src/entities/role.js';
+import {User} from './src/entities/user.js';
+import {ProductCategory} from './src/entities/productCategory.js';
+import {Product} from './src/entities/product.js';
+import {Trans_Header} from './src/entities/transHeader.js';
+import {Trans_Detail} from './src/entities/transactionDetail.js';
+
+const { EntitySchema, createConnection } = pkg; 
 
 const app = Express();
 
-typeorm.createConnection({
+createConnection({
     type: "mysql",
     host: "localhost",
     port: 3306,
     username: "root",
     database: "luxdb",
     synchronize: true,
-    entitySchema: [
-        require('./src/entities/role'),
-        require('./src/entities/user'),
-        require('./src/entities/productCategory'),
-        require('./src/entities/product'),
-        require('./src/entities/transHeader'),
-        require('./src/entities/transactionDetail'),
+    entities: [
+        new EntitySchema (Role),
+        new EntitySchema (User),
+        new EntitySchema (ProductCategory),
+        new EntitySchema (Product),
+        new EntitySchema (Trans_Header),
+        new EntitySchema (Trans_Detail),
     ]
 });
 

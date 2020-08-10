@@ -1,4 +1,4 @@
-module.exports = {
+export const Role = {
     name:"role",
     columns: {
         id: {
@@ -7,7 +7,7 @@ module.exports = {
             generate: true,
         },
         description: {
-            type: "string"
+            type: "text"
         }
     }
 }

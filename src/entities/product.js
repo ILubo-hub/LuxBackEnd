@@ -1,4 +1,4 @@
-module.exports = {
+export const Product = {
     name: "Product",
     columns: {
         id: {
@@ -7,7 +7,7 @@ module.exports = {
             generated: true,
         },
         name: {
-            type: "string",
+            type: "varchar",
         },
         description: {
             type: "text",
@@ -19,7 +19,7 @@ module.exports = {
             type: "float",
         },
         sellerName: {
-            type: "string",
+            type: "varchar",
         },
     },
     relations: {

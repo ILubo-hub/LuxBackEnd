@@ -1,4 +1,4 @@
-module.exports = {
+export const Trans_Header = {
     name:"Trans_Header",
     columns: {
         id: {

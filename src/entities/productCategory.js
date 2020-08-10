@@ -1,4 +1,4 @@
-module.exports = {
+export const ProductCategory = {
     name: "ProductCategory",
     columns: {
         id: {
@@ -7,7 +7,7 @@ module.exports = {
             generate: true
         },
         name: {
-            type: "string"
+            type: "varchar"
         },
         description: {
             type: "text"
