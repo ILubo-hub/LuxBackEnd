@@ -1,20 +1,19 @@
 module.exports = {
-    name:"user",
+    name:"Trans_Detail",
     columns: {
         id: {
             primary: true,
             type: "int",
             generated: true,
         },
-        name: {
-            type: "string",
+        subTotal: {
+            type: "float",
         },
-        lastname: {
-            type: "string",
+        discount: {
+            type: "float",
         },
-        email: {
-            type: "string",
-            
+        total: {
+            type: "float",
         },
     }
 };
