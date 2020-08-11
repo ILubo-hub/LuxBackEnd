@@ -6,6 +6,7 @@ import {ProductCategory} from './src/entities/productCategory.js';
 import {Product} from './src/entities/product.js';
 import {Trans_Header} from './src/entities/transHeader.js';
 import {Trans_Detail} from './src/entities/transactionDetail.js';
+import { createUser } from './src/routing/userRoute.js';
 
 
 const { EntitySchema, createConnection } = pkg; 
@@ -30,7 +31,7 @@ createConnection({
 });
 
 app.use(Express.json({extended: true}));
-app.use('/api/user', require('./src/routing/userRoute'));
+app.use('/api/user',createUser);
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));

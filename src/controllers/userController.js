@@ -1,7 +1,9 @@
-import User from "../entities/user";
-import { body, validationResult } from "express-validator";
+import {User} from "../entities/user.js";
+import pkg from "express-validator";
 import bcrypt from "bcrypt";
-import { getConnection } from "typeorm";
+import pkgTy from "typeorm";
+const { body, validationResult } = pkg;
+const { getConnection } = pkgTy;
 
 export const CreateUser = async (req, res) => {
   const error = validationResult(req);
@@ -14,16 +16,26 @@ export const CreateUser = async (req, res) => {
   const hashpassword = bcrypt.hashSync(password, 12);
   password = hashpassword;
 
-  try {
-    await getConnection()
-      .createQueryBuilder()
-      .insert()
-      .into(User)
-      .values([
-        { name: name, lastanme: lastname, email: email, password: password },
-      ])
-      .execute();
+  //const user = new User;
 
+  try {
+
+    const user = await User.create({
+        name,
+        lastname,
+        email,
+        password,
+      }).save();
+      return user;
+
+   /*  await getConnection()
+     .createQueryBuilder()
+     .insert()
+     .into(user)
+     .values([
+         {name: name, lastname: lastname, email: email, password: password}
+     ])
+     .execute();*/
     return res.status(200).json({
       msj: "Succesfully",
     });
