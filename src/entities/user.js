@@ -16,6 +16,9 @@ export const User = {
         email: {
             type: "varchar",
         },
+        password: {
+            type: "varchar"
+        },
     },
 
     relations : {
