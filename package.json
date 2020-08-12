@@ -14,7 +14,8 @@
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "dev": "nodemon index.js"

@@ -1,4 +1,4 @@
-import Express from 'express';
+import Express, { Application } from 'express';
 import pkg from 'typeorm';
 import {Role} from './src/entities/role.js';
 import {User} from './src/entities/user.js';
