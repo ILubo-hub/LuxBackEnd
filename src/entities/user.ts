@@ -1,8 +1,8 @@
 import {Column, PrimaryGeneratedColumn, Entity, ManyToOne, BaseEntity} from 'typeorm';
-import { ProductCategory } from './ProductCategory';
+import { Role } from './role';
 
 @Entity()
- export class Product extends BaseEntity {
+ export class User extends BaseEntity {
     
     @PrimaryGeneratedColumn()
     id: number;
@@ -17,29 +17,23 @@ import { ProductCategory } from './ProductCategory';
         type: 'varchar',
         nullable: false,
     })
-    description: string;
-
-    @Column({
-        type: 'number',
-        nullable: false
-    })
-    quantity: number;
-
-    @Column({
-        type: 'money',
-        nullable: false
-    })
-    price: number;
+    lastname: string;
 
     @Column({
         type: 'varchar',
         nullable: false
     })
-    sellerName: string; 
+    email: string;
+
+    @Column({
+        type: 'varchar',
+        nullable: false
+    })
+    password: string;
 
     // This can fail, in that case remove the underscore of _type
-    @ManyToOne(() => ProductCategory, productCategory => productCategory.id)
-    productCategory: ProductCategory;
+    @ManyToOne(() => Role, role => role.id)
+    userRole: Role;
 }
 
-export default Product;
+export default User;

@@ -7,6 +7,6 @@
     "database": "luxdb",
     "synchronize": true,
     "logging": true,
-    "entities": ["src/entity/*.*"]
+    "entities": ["src/entities/*.*"]
   }
 

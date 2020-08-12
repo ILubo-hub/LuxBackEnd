@@ -1,9 +1,8 @@
-import {Column, PrimaryGeneratedColumn, Entity, OneToMany} from 'typeorm';
+import {Column, PrimaryGeneratedColumn, Entity, OneToMany, BaseEntity} from 'typeorm';
 import Product from './product';
 
 @Entity()
-
-export class ProductCategory {
+export class ProductCategory extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,8 +18,8 @@ export class ProductCategory {
     })
     description: string;
     
-    // This can fail, in that case remove the underscore of _type
-    @OneToMany(_type => Product, product => product.productCategory)
+    // This can fail
+    @OneToMany(() => Product, product => product.productCategory)
     products: Product[];
 }
 
