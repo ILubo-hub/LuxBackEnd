@@ -1,5 +1,6 @@
-import {Column, PrimaryGeneratedColumn, Entity, ManyToOne, BaseEntity} from 'typeorm';
+import {Column, PrimaryGeneratedColumn, Entity, ManyToOne, BaseEntity, JoinTable, ManyToMany} from 'typeorm';
 import { ProductCategory } from './ProductCategory';
+import { Trans_Detail } from './transactionDetail'
 
 @Entity()
  export class Product extends BaseEntity {
@@ -38,8 +39,12 @@ import { ProductCategory } from './ProductCategory';
     sellerName: string; 
 
     // This can fail, in that case remove the underscore of _type
-    @ManyToOne(() => ProductCategory, productCategory => productCategory.id)
+    @ManyToOne(_type => ProductCategory, productCategory => productCategory.id)
     productCategory: ProductCategory;
+
+    @ManyToMany(_type=>Trans_Detail)
+    @JoinTable()
+    details: Trans_Detail[];
 }
 
 export default Product;

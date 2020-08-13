@@ -19,7 +19,7 @@ export class ProductCategory extends BaseEntity {
     description: string;
     
     // This can fail
-    @OneToMany(() => Product, product => product.productCategory)
+    @OneToMany(_type => Product, product => product.productCategory)
     products: Product[];
 }
 
