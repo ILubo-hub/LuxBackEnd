@@ -1,4 +1,4 @@
-import {User} from "../entities/user.js";
+/*import {User} from "../entities/user.js";
 import pkg from "express-validator";
 import bcrypt from "bcrypt";
 import pkgTy from "typeorm";
@@ -36,6 +36,8 @@ export const CreateUser = async (req, res) => {
          {name: name, lastname: lastname, email: email, password: password}
      ])
      .execute();*/
+
+     /*
     return res.status(200).json({
       msj: "Succesfully",
     });
@@ -46,3 +48,6 @@ export const CreateUser = async (req, res) => {
     });
   }
 };
+
+
+*/

@@ -6,8 +6,8 @@
     "username": "postgres",
     "password": "test",
     "database": "luxdb",
-    "synchronize": true,
     "logging": true,
+    "synchronize": true,
     "entities": [
       "entities/**/*.ts"
     ]
