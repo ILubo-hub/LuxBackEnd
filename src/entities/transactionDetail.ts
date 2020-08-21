@@ -31,7 +31,7 @@ export class Trans_Detail extends BaseEntity {
     @JoinTable()
     products: Product[];
 
-    @ManyToOne(() => Trans_Header, header => header.id)
+    @ManyToOne(_type => Trans_Header, header => header.id)
     transHeader: Trans_Header;
 }
 

@@ -32,7 +32,7 @@ import { Role } from './role';
     password: string;
 
     // This can fail, in that case remove the underscore of _type
-    @ManyToOne(() => Role, role => role.id)
+    @ManyToOne(_type => Role, role => role.id)
     userRole: Role;
 }
 
