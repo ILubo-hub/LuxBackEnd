@@ -1,15 +1,12 @@
 {
     "name": "default",
-    "type": "postgres",
+    "type": "mysql",
     "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "test",
+    "port": 3306,
+    "username": "root",
     "database": "luxdb",
-    "logging": true,
     "synchronize": true,
-    "entities": [
-      "./entities/**/*.ts"
-    ]
+    "logging": true,
+    "entities":  ["entities/**/*.ts"]
   }
 
