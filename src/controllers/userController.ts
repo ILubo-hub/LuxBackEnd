@@ -6,7 +6,7 @@ import { User } from "../entities/user";
 
 
  export class userController {
-   static listAll = async (req: Request, res: Response) => {
+   static listAll = async (res: Response) => {
      //Get users from dataBase
      const userRespository = getRepository(User);
      const users = await userRespository.find({
@@ -102,12 +102,12 @@ import { User } from "../entities/user";
      let user: User;
      try{
        user = await userRespository.findOneOrFail(id);
+       userRespository.delete(id);
+       res.status(204).send();
      }catch(error){
        res.status(404).send("User not found");
        return;
      }
-     userRespository.delete(id);
-     res.status(204).send();
    };
  }
 

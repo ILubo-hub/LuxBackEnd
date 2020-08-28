@@ -35,3 +35,5 @@ import { Role } from './role';
     @ManyToOne(_type => Role, role => role.id)
     userRole: Role;
 }
+
+export default User;
