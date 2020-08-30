@@ -13,7 +13,6 @@ class AuthController {
         if(!(email && password)) {
             res.status(400).send("Incorrect data");
         }
-
         //Get user form database
         const userRepository = getRepository(User);
         let user: User;
