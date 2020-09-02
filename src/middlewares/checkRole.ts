@@ -6,7 +6,7 @@ import { User } from '../entities/user';
 
 export const checkRole = (roles: Array<string>) => {
 
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return async (_req: Request, res: Response, next: NextFunction) => {
         //Get the user ID from previus middleware
         const id = res.locals.jwtPayload.userId;
 

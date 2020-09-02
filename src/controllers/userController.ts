@@ -5,15 +5,14 @@ import { validate } from "class-validator";
 import { User } from "../entities/user";
 
 
- export class userController {
-   static listAll = async (res: Response) => {
+ class userController {
+   static listAll = async (_req: Request, res: Response) => {
      //Get users from dataBase
-     const userRespository = getRepository(User);
-     const users = await userRespository.find({
-       select: ["id", "name", "lastname"]
-     });
-
-     res.send(users);
+     
+      const userRespository = getRepository(User);
+      const users = await userRespository.find({
+        select: ["id", "name", "lastname"]});
+      res.send(users);
    };
 
    static getOneById = async (req: Request, res: Response) => {
@@ -50,12 +49,13 @@ import { User } from "../entities/user";
      const userRespository = getRepository(User);
      try{
        await userRespository.save(user);
+       res.status(201).send("User created succesfully");
      }catch(error){
        res.status(409).send("Email is already in use");
        return;
      }
 
-     res.status(201).send("User created succesfully");
+     
    };
 
    static editUser = async (req: Request, res: Response) => {
@@ -83,16 +83,15 @@ import { User } from "../entities/user";
        res.status(400).send(errors);
        return;
      }
-
      //try to safe, if fails, that means username is already in use
      try{
        await userRespository.save(user);
+       res.status(504).send();
      }catch(e){
        res.status(409).send("Name is Already in use");
        return;
      }
-
-     res.status(504).send();
+     
    };
 
    static deleteUser = async (req: Request, res: Response)=> {
@@ -103,7 +102,7 @@ import { User } from "../entities/user";
      try{
        user = await userRespository.findOneOrFail(id);
        userRespository.delete(id);
-       res.status(204).send();
+       res.status(204).send(user);
      }catch(error){
        res.status(404).send("User not found");
        return;

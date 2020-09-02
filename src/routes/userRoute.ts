@@ -9,7 +9,7 @@ const router = Router();
 router.get("/", [checkJwt, checkRole(["ADMIN"])], userController.listAll);
 
 //Get one user
-router.get("/:id([0-9]+)",[checkJwt, checkRole(["ADMIN"])], userController.getOneById);
+router.get("/:id([0-9]+)", [checkJwt, checkRole(["ADMIN"])], userController.getOneById);
 
 //Create a new user
 router.post("/", [checkJwt, checkRole(["ADMIN"])], userController.newUser);
