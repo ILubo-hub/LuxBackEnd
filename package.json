@@ -9,6 +9,7 @@
     "@types/cors": "^2.8.7",
     "@types/helmet": "^0.0.48",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/mysql": "^2.15.15",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.3.1",

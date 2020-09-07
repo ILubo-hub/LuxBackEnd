@@ -4,7 +4,7 @@ import { getRepository } from 'typeorm';
 import { User } from '../entities/user';
 
 
-export const checkRole = (roles: Array<string>) => {
+export const checkRole = (_roles: Array<string>) => {
 
     return async (_req: Request, res: Response, next: NextFunction) => {
         //Get the user ID from previus middleware
@@ -13,9 +13,9 @@ export const checkRole = (roles: Array<string>) => {
         const userRepository = getRepository(User);
         let user: User;
         try{
-            user = await userRepository.findOneOrFail(id);
+            user = await userRepository.findOne(id, {relations:["role"]}) as User;
 
-            if(roles.indexOf(user.userRole.description) > -1) next();
+            if(user.role.description==="Administrador") next();
             else res.status(401).send("Something is wrong with the user role");
         }catch(id){
             res.status(401).send("User role not detected");

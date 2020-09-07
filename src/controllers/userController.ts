@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
+import * as bcrypt from 'bcryptjs';
 
 import { User } from "../entities/user";
+import { Role } from "../entities/role";
 
 
  class userController {
@@ -10,9 +12,8 @@ import { User } from "../entities/user";
      //Get users from dataBase
      
       const userRespository = getRepository(User);
-      const users = await userRespository.find({
-        select: ["id", "name", "lastname"]});
-      res.send(users);
+      const users = await userRespository.find({relations:["role"]});
+      res.status(200).send({"msj":"Users listed succesfully","data": users});
    };
 
    static getOneById = async (req: Request, res: Response) => {
@@ -33,12 +34,23 @@ import { User } from "../entities/user";
 
    static newUser = async (req: Request, res: Response) => {
      //Get params from the body
-     let {name, lastname, email, password} = req.body;
+     let {name, lastname, email, roleId, password} = req.body;
+     let role = new Role();
+
+     if(roleId===1){
+       role.id =1;
+       role.description="ADMIN"
+     }else{
+       role.id = 2;
+       role.description = "USER";
+     }
+
      let user = new User();
      user.name = name;
      user.lastname = lastname;
      user.email = email;
-     user.password = password;
+     user.role = role;
+     user.password = bcrypt.hashSync(password, 8);;
 
      const errors = await validate(user);
      if(errors.length>0){
@@ -51,7 +63,7 @@ import { User } from "../entities/user";
        await userRespository.save(user);
        res.status(201).send("User created succesfully");
      }catch(error){
-       res.status(409).send("Email is already in use");
+       res.status(409).send(error);
        return;
      }
 

@@ -13,7 +13,7 @@ export class Role extends BaseEntity {
     description: string;
     
     // This can fail
-    @OneToMany(_type => User, user => user.userRole)
+    @OneToMany(_type => User, user => user.role)
     users: User[];
 }
 

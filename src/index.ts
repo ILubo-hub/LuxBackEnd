@@ -6,6 +6,8 @@ import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import routes from "./routes";
+import {User} from './entities/user';
+import {Role} from './entities/role';
 
 
 /*
@@ -25,8 +27,15 @@ const main = async () => {
 }
 main();*/
 
-createConnection()
-  .then(async _connection => {
+createConnection({
+  type: 'mysql',
+  host: '127.0.0.1',
+  port: 3306,
+  username: 'root',
+  password: '',
+  database: 'luxdb',
+  entities: [User, Role]
+}).then(async _connection => {
     // Create a new express application instance
     const app = express();
 

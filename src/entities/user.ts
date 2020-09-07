@@ -43,5 +43,5 @@ import * as bcrypt from 'bcryptjs';
 
     // This can fail, in that case remove the underscore of _type
     @ManyToOne(_type => Role, role => role.id)
-    userRole: Role;
+    role: Role;
 }
