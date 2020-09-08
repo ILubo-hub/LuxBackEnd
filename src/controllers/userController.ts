@@ -71,11 +71,23 @@ import { Role } from "../entities/role";
    };
 
    static editUser = async (req: Request, res: Response) => {
+
+
      //Get the id from the url
      const id = req.params.id;
      
      //Get values from the body
-     const { name, lastname } = req.body;
+     const { name, lastname, roleId } = req.body;
+
+     let role = new Role();
+
+     if(roleId===1){
+       role.id =1;
+       role.description="ADMIN"
+     }else{
+       role.id = 2;
+       role.description = "USER";
+     }
 
      //Try to find user on database
      const userRespository = getRepository(User);
@@ -90,6 +102,7 @@ import { Role } from "../entities/role";
      //Validate the new values
      user.name = name;
      user.lastname = lastname;
+     user.role = role;
      const errors = await validate(user);
      if(errors.length > 0){
        res.status(400).send(errors);
@@ -100,10 +113,9 @@ import { Role } from "../entities/role";
        await userRespository.save(user);
        res.status(504).send();
      }catch(e){
-       res.status(409).send("Name is Already in use");
+       res.status(409).send("Something went wrong"+e);
        return;
      }
-     
    };
 
    static deleteUser = async (req: Request, res: Response)=> {
@@ -114,7 +126,7 @@ import { Role } from "../entities/role";
      try{
        user = await userRespository.findOneOrFail(id);
        userRespository.delete(id);
-       res.status(204).send(user);
+       res.status(204).send("User deleted");
      }catch(error){
        res.status(404).send("User not found");
        return;

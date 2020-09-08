@@ -16,7 +16,7 @@ export const checkRole = (_roles: Array<string>) => {
             user = await userRepository.findOne(id, {relations:["role"]}) as User;
 
             if(user.role.description==="Administrador") next();
-            else res.status(401).send("Something is wrong with the user role");
+            else res.status(401).send("Something is wrong with the user role"+user.role.description);
         }catch(id){
             res.status(401).send("User role not detected");
         }

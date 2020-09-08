@@ -15,9 +15,9 @@ router.get("/:id([0-9]+)", [checkJwt, checkRole(["ADMIN"])], userController.getO
 router.post("/", [checkJwt, checkRole(["ADMIN"])], userController.newUser);
 
 //Edit one user
-router.patch("/:id([0-9]+)", [checkJwt, checkRole(["ADMIN"])], userController.newUser);
+router.patch("/:id", [checkJwt, checkRole(["ADMIN"])], userController.editUser);
 
 //Delete one user
-router.delete("/:id([0-9]+)", [checkJwt, checkRole(["ADMIN"])], userController.deleteUser);
+router.delete("/del/:id", [checkJwt, checkRole(["ADMIN"])], userController.deleteUser);
 
 export default router;
